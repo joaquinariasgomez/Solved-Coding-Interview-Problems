@@ -26,6 +26,11 @@ public class BinaryTreeDepth {
         }
     }
 
+    public int anotherCalculateMaxDepth(TreeNode tree) {
+        if(tree == null) return 0;
+        return 1 + Math.max(anotherCalculateMaxDepth(tree.left), anotherCalculateMaxDepth(tree.right));
+    }
+
     public void run() {
         TreeNode node = new TreeNode(1);
         node.left = new TreeNode(2);
@@ -34,7 +39,7 @@ public class BinaryTreeDepth {
         node.left.right.left = new TreeNode(5);
         node.left.right.right = new TreeNode(6);
         node.right = new TreeNode(7);
-        System.out.println(calculateMaxDepth(node));
+        System.out.println(anotherCalculateMaxDepth(node));
     }
     public static void main(String[] args) {
         new BinaryTreeDepth().run();
