@@ -15,7 +15,7 @@ public class BinarySearch2 {
                 }
                 else {
                     start = midP + 1;
-                    position = midP;
+                position = midP;
                 }
             }
         }

@@ -16,7 +16,7 @@ public class LongestPalindromicSubstring {
             }
         }
 
-        return s.substring(start, end + 1);
+        return word.substring(start, end + 1);
     }
 
     public int expandFromMiddle(String word, int left, int right) {

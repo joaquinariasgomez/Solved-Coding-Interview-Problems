@@ -66,8 +66,8 @@ public class RemoveIslands {
         for(int i=1; i<rows-1; i++) {
             for(int j=1; j<cols-1; j++) {
                 if(isAdjacentWithWhite(grid, i, j) && !visited[i-1][j-1]) {
-                    qrow.offer(i);
-                    qcol.offer(j);
+                    qrow.add(i);
+                    qcol.add(j);
                     while(!qrow.isEmpty() && !qcol.isEmpty()) {
                         int row = qrow.poll();
                         int col = qcol.poll();
