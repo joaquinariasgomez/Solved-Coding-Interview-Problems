@@ -17,7 +17,7 @@ public class AllSubsetsOfSet {
     public ArrayList<ArrayList<Integer>> getSubsets(ArrayList<Integer> set) {
         ArrayList<ArrayList<Integer>> allsubsets = new ArrayList<ArrayList<Integer>>();
         int max = 1 << set.size();
-        for(int i=0; i<max; i++) {
+        for(int i=0; i<max; i++) {  //O(2^set.size()) -> O(2^n)
             ArrayList<Integer> subset = intToSubset(i, set);    //Select items from set depending on int "i"
             allsubsets.add(subset);
         }

@@ -6,7 +6,8 @@ public class MinimumChars {
 
     private int minDeletions(char[] s) {
         HashMap<Character, Integer> mp = new HashMap<>();
-        PriorityQueue<Integer> pq = new PriorityQueue<>((x, y) -> Integer.compare(y, x));
+        //PriorityQueue<Integer> pq = new PriorityQueue<>((x, y) -> Integer.compare(y, x));
+        PriorityQueue<Integer> pq = new PriorityQueue<>((a, b) -> b-a);
 
         for(int c = 0; c < s.length; ++c) {
             if(mp.containsKey(s[c])) {

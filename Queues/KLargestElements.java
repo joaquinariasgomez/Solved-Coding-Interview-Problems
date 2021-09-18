@@ -4,7 +4,8 @@ import java.util.PriorityQueue;
 public class KLargestElements {
     public int[] klargest(int[] array, int k) {
         int[] solution = new int[k];
-        PriorityQueue<Integer> heap = new PriorityQueue<Integer>(Comparator.reverseOrder());
+        //PriorityQueue<Integer> heap = new PriorityQueue<Integer>(Comparator.reverseOrder());
+        PriorityQueue<Integer> heap = new PriorityQueue<Integer>((a, b) -> b-a);
 
         for(int e: array) {
             heap.add(e);
