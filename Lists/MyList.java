@@ -1,6 +1,9 @@
 class Node {
   public int data;
   public Node next;
+  public Node() {
+    this.next = null;
+  }
   public Node(int data) {
     this.data = data;
     this.next = null;
@@ -62,16 +65,56 @@ class LinkedList {
 }
 
 public class MyList {
+
+  public Node deleteNode(Node head, int e) {
+    Node current = head;
+    Node prev = null;
+    while(current != null) {
+      if(current.data == e) {
+        if(current == head) {
+          head = head.next;
+        }
+        else {
+          prev.next = current.next;
+        }
+      }
+      prev = current;
+      current = current.next;
+    }
+    return head;
+  }
+
+  public Node reverseList(Node head) {
+    Node current = head;
+    Node prev = null;
+    while(current != null) {
+      Node nextNode = current.next;
+      current.next = prev;
+      prev = current;
+      current = nextNode;
+    }
+    return prev;
+  } 
+
+  public void printNode(Node head) {
+    Node current = head;
+    while(current != null) {
+      System.out.print(current.data+"->");
+      current = current.next;
+    }
+    System.out.println("null");
+  }
+
   public void run() {
-    LinkedList l = new LinkedList();
-    l.head = new Node(1);
-    l.head.next = new Node(2);
-    l.head.next.next = new Node(3);
-    l.print();
-    l.reverse();
-    l.print();
-    l.deleteNode(2);
-    l.print();
+    Node node = new Node();
+    node = new Node(1);
+    node.next = new Node(2);
+    node.next.next = new Node(3);
+    node.next.next.next = new Node(4);
+    printNode(node);
+    Node result = deleteNode(node, 4);
+    printNode(result);
+    printNode(reverseList(result));
   }
   public static void main(String[] args) {
     new MyList().run();

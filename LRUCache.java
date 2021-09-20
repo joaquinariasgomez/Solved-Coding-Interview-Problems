@@ -5,38 +5,76 @@ import java.util.Queue;
 public class LRUCache {
 
     class Cache {
+
+        class ListNode {
+            int key;
+            int val;
+            ListNode next;
+            ListNode prev;
+        }
+
         private int capacity;
-        private Queue<Integer> queue;   //Keys of map
-        HashMap<Integer, Integer> map;
+        private HashMap<Integer, ListNode> map;
+        private ListNode head;
+        private ListNode tail;
 
         public Cache(int capacity) {
             this.capacity = capacity;
-            this.queue = new LinkedList<Integer>();
-            this.map = new HashMap<Integer, Integer>(capacity);
+            this.map = new HashMap<Integer, ListNode>(capacity);
+            head = new ListNode();
+            tail = new ListNode();
+            head.next = tail;
+            tail.prev = head;
         }
 
         public void put(int key, int value) {
-            if(map.size() == capacity) {
-                map.remove(getFrontKey());
+            // Put item in the front of the linked list and remove last
+            ListNode node = map.get(key);
+            if(node != null) {
+                node.val = value;
+                removeListNode(node);
+                addToFrontOfListNode(node);
             }
-            map.put(key, value);
-            queue.add(key);
+            else {
+                if(map.size() == capacity) {
+                    map.remove(tail.prev.key);
+                    removeListNode(tail.prev);
+                }
+                ListNode newNode = new ListNode();
+                newNode.key = key;
+                newNode.val = value;
+                addToFrontOfListNode(newNode);
+                map.put(key, newNode);
+            }
+        }
+
+        public void addToFrontOfListNode(ListNode node) {
+            ListNode headNext = head.next;
+            head.next = node;
+            node.next = headNext;
+            node.prev = head;
+            headNext.prev = node;
+        }
+
+        public void removeListNode(ListNode node) {
+            ListNode next = node.next;
+            ListNode prev = node.prev;
+            next.prev = prev;
+            prev.next = next;
         }
 
         public int get(int key) {
-            if(!map.containsKey(key)) {
-                return -1;
-            }
-            else {
-                int result = map.get(key);
-                // Queue remove key
-                // Queue add key
+            // Put item in the front of the linked list and remove last
+            ListNode node = map.get(key);
+            if(node != null) {
+                int result = node.val;
+                removeListNode(node);
+                addToFrontOfListNode(node);
                 return result;
             }
-        }
-
-        public int getFrontKey() {
-            return queue.poll();
+            else {
+                return -1;
+            }
         }
     }
 

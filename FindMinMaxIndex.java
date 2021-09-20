@@ -19,7 +19,7 @@ public class FindMinMaxIndex {
             }
         }
         return result;
-    }
+    } 
     
     public int findMax(int[] nums, int target) {
         int first = 0;
