@@ -9,8 +9,9 @@ public List<List<Integer>> levelOrder(TreeNode root) {
             List<Integer> currentLevel = new ArrayList<>();
             for(int i=0; i<levelSize; i++) {
                 TreeNode current = queue.poll();
-                //Process nodes:
+                //Process node:
                 currentLevel.add(current.val);
+                //Add childs
                 if(current.left != null) queue.add(current.left);
                 if(current.right != null) queue.add(current.right);
             }
