@@ -27,11 +27,11 @@ public class BinarySearch {
 
         while(begin < end) {
             int mid = begin + (end-begin)/2;
-            if(nums[mid] < target) {
-                begin = mid+1;
+            if(target <= nums[mid]) {
+                end = mid;
             }
             else {
-                end = mid;
+                begin = mid+1;
             }
         }
         return begin;
@@ -43,7 +43,7 @@ public class BinarySearch {
 
         while(begin < end) {
             int mid = begin + (end-begin)/2;
-            if(nums[mid] > target) {
+            if(target < nums[mid]) {
                 end = mid;
             }
             else {
