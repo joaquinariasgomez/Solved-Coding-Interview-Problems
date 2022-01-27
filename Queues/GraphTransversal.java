@@ -110,6 +110,26 @@ public class GraphTransversal {
         }
     }
 
+    public void depthFirstSearchByLevel(char[][] graph) {
+        Stack<Integer> rows = new Stack<Integer>();
+        Stack<Integer> cols = new Stack<Integer>();
+        boolean[][] visited = new boolean[graph.length][graph[0].length];
+
+        rows.push(0);
+        cols.push(0);
+        visited[0][0] = true;
+        while(!rows.isEmpty() && !cols.isEmpty()) {
+            int currStackSize = rows.size();
+            for(int i=0; i<currStackSize; i++) {
+                int currRow = rows.pop();
+                int currCol = cols.pop();
+                System.out.print(graph[currRow][currCol]+" ");
+                pushAdjacents(graph, visited, currRow, currCol, rows, cols);
+            }
+            System.out.println();
+        }
+    }
+
     public void breadthFirstSearch(char[][] graph) {
         Queue<Integer> rows = new LinkedList<Integer>();
         Queue<Integer> cols = new LinkedList<Integer>();
@@ -126,15 +146,45 @@ public class GraphTransversal {
         }
     }
 
+    public void breadthFirstSearchByLevel(char[][] graph) {
+        Queue<Integer> rows = new LinkedList<Integer>();
+        Queue<Integer> cols = new LinkedList<Integer>();
+        boolean[][] visited = new boolean[graph.length][graph[0].length];
+
+        rows.add(0);
+        cols.add(0);
+        visited[0][0] = true;
+        while(!rows.isEmpty() && !cols.isEmpty()) {
+            int currLevelSize = rows.size();
+            for(int i=0; i<currLevelSize; i++) {
+                int currRow = rows.poll();
+                int currCol = cols.poll();
+                System.out.print(graph[currRow][currCol]+" ");
+                pushAdjacents(graph, visited, currRow, currCol, rows, cols);
+            }
+            System.out.println();
+        }
+    }
+
     public void run() {
         char[][] graph = {
             {'x', 'o', ' '},
             {'o', 'x', 'o'},
             {'o', 'x', 'x'},
         };
+        char[][] graphLevel = {
+            {'1', '2', '3'},
+            {'2', '2', '3'},
+            {'3', '3', '3'},
+        };
+        System.out.println("DFS:");
         depthFirstSearch(graph);
-        System.out.println("AND NOW:");
+        System.out.println("DFS by level:");
+        depthFirstSearchByLevel(graphLevel);
+        System.out.println("BFS:");
         breadthFirstSearch(graph);
+        System.out.println("BFS by level:");
+        breadthFirstSearchByLevel(graphLevel);
     }
     public static void main(String[] args) {
         new GraphTransversal().run();
