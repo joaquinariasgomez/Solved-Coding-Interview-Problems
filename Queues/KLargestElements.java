@@ -10,8 +10,8 @@ public class KLargestElements {
         for(int e: array) {
             heap.add(e);
         }
-        for(int i = 0; i< k; i++) {
-            solution[i] = heap.remove();
+        for(int i = 0; i<k; i++) {
+            solution[i] = heap.poll();
         }
 
         return solution;
