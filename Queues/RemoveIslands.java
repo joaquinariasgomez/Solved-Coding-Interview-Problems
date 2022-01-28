@@ -57,12 +57,6 @@ public class RemoveIslands {
         Queue<Integer> qrow = new LinkedList<Integer>();
         Queue<Integer> qcol = new LinkedList<Integer>();
 
-        for(int i=0; i<visited.length; i++) {
-            for(int j=0; j<visited[0].length; j++) {
-                visited[i][j] = false;
-            }
-        }
-
         for(int i=1; i<rows-1; i++) {
             for(int j=1; j<cols-1; j++) {
                 if(isAdjacentWithWhite(grid, i, j) && !visited[i-1][j-1]) {

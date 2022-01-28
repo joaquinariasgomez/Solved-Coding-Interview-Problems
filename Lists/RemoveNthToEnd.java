@@ -48,6 +48,25 @@ public class RemoveNthToEnd {
         return head;
     }
 
+    public ListNode removeNode(ListNode head, int target) {
+        ListNode current = head;
+        ListNode prev = null;
+
+        while(current != null) {
+            if(current.val == target) {
+                if(current == head) {
+                    return head.next;
+                }
+                else {
+                    prev.next = current.next;
+                }
+            }
+            prev = current;
+            current = current.next;
+        }
+        return head;
+    }
+
     public void run() {
         ListNode list = new ListNode(1);
         list.next = new ListNode(2);
@@ -55,7 +74,8 @@ public class RemoveNthToEnd {
         list.next.next.next = new ListNode(4);
         printList(list);
         //ListNode newList = removeNodesFromBeginning(list, 3);
-        ListNode newList = removeNodesFromEnd(list, 1);
+        //ListNode newList = removeNodesFromEnd(list, 1);
+        ListNode newList = removeNode(list, 2);
         printList(newList);
     }
 
