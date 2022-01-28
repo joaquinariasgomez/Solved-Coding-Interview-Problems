@@ -6,7 +6,7 @@ public class BinarySearch {
         int result = -1;
 
         while(beg <= end) {
-            int mid = (beg + end) / 2;
+            int mid = beg + (end - beg) / 2;
             if (array[mid] <= element) {
                 beg = mid+1;
                 result = mid;

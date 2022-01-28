@@ -105,6 +105,18 @@ public class MyList {
     System.out.println("null");
   }
 
+  public Node getMiddleNode(Node head) {
+    Node slow = head;
+    Node fast = head;
+
+    while(fast != null && fast.next != null) {
+      slow = slow.next;
+      fast = fast.next.next;
+    }
+
+    return slow;
+  }
+
   public void run() {
     Node node = new Node();
     node = new Node(1);
