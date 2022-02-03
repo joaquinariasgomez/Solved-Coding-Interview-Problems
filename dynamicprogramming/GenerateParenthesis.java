@@ -20,7 +20,6 @@ public class GenerateParenthesis {
             parenthesis.add("()");
         }
         else {
-            //ArrayList<String> currentParenthesis = generate(n-1);
             HashSet<String> currentParenthesis = generate(n-1);
             for(String prevParenthesis : currentParenthesis) {
                 // Add parenthesis at the beginning
