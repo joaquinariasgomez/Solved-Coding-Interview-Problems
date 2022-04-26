@@ -3,17 +3,22 @@
 
 int findIndex(std::string phrase, std::string word) {
     int index = -1;
+    if(word.size() > phrase.size()) return index;
+    if(phrase == word) return 0;
 
     for(int i=0; i<phrase.size(); i++) {
         bool match = true;
+        int a = i;
         for(int j=0; j<word.size(); j++) {
-            if(phrase[i++] != word[j]) {
+            std::cout << "comparando " << phrase[a] << " con " << word[j] << std::endl;
+            if(a >= phrase.size() || phrase[a++] != word[j]) {
                 match = false;
             }
         }
 
         if(match) {
-            index = i;
+            index = a;
+            break;
         }
     }
 
@@ -21,8 +26,8 @@ int findIndex(std::string phrase, std::string word) {
 }
 
 int main() {
-    std::string findHere = "this is a test";
-    std::string word = "test";
+    std::string findHere = "hello";
+    std::string word = "ll";
     std::cout << "Index of " << word << ": " << findIndex(findHere, word) << std::endl;
 }
 
