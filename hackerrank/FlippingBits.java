@@ -1,14 +1,12 @@
 public class FlippingBits {
-
-    public void flip(int number) {
-        long max = Integer.MAX_VALUE * 2 + 1;
-        long opposite = ~(long)number & max;
-        System.out.println(opposite);
+    public long flip(long n) {
+        long mask=(1l<<32)-1;
+        return (~n)&mask;
     }
 
     public void run() {
-        int n=5;
-        flip(n);
+        long n=9;
+        System.out.println(flip(n));
     }
     public static void main(String[] args) {
         new FlippingBits().run();
