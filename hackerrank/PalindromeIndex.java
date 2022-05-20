@@ -2,29 +2,30 @@ public class PalindromeIndex {
     public int getIndex(String s) {
         int begin = 0;
         int end = s.length()-1;
-        
-        while(begin<=end) {
-            if(s.charAt(begin) != s.charAt(end)) {
-                if(s.charAt(begin+1) == s.charAt(end)) {
-                    return begin;
+        while(begin<end) {
+            if(s.charAt(begin)!=s.charAt(end)) {
+                if(isPalindrome(s, begin, end-1)) {
+                    return end;
                 }
                 else {
-                    if(s.charAt(end-1) == s.charAt(begin)) {
-                        return end;
-                    }
-                    else {
-                        begin++;
-                        end--;
-                    }
+                    return begin;
                 }
             }
-            else {
-                begin++;
-                end--;
-            }
+            begin++;
+            end--;
         }
-        
         return -1;
+    }
+
+    private boolean isPalindrome(String s, int begin, int end) {
+        while(begin<end) {
+            if(s.charAt(begin)!=s.charAt(end)) {
+                return false;
+            }
+            begin++;
+            end--;
+        }
+        return true;
     }
 
     public void run() {
