@@ -1,21 +1,26 @@
-public class TwoSumArraySorted {
-    int left = 0;
-        int right = numbers.length-1;
-        int[] solution = new int[2];
-        while(left<right) {
-            if(numbers[left]+numbers[right] > target) {
-                right--;
+class Solution {
+    public int[] twoSum(int[] numbers, int target) {
+        int begin = 0;
+        int end = numbers.length -1;
+        int[] sol = new int[2];
+        
+        while(begin < end) {
+            int currentSum = numbers[begin] + numbers[end];
+            if(currentSum > target) {
+                end--;
             }
             else {
-                if(numbers[left]+numbers[right] < target) {
-                    left++;
+                if(currentSum < target) {
+                    begin++;        
                 }
                 else {
-                    solution[0] = left+1;
-                    solution[1] = right+1;
-                    return solution;
+                    sol[0] = begin+1;
+                    sol[1] = end+1;
+                    break;
                 }
             }
         }
-        return solution;
+        
+        return sol;
+    }
 }
