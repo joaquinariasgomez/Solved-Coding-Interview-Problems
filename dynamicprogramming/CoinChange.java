@@ -47,8 +47,9 @@ public class CoinChange {
     }
 
     public void run() {
-        int[] coins = {1, 5, 10, 25};
-        int c = 6;
+        // int[] coins = {1, 5, 10, 25};
+        int[] coins = {186,419,83,408};
+        int c = 6249;
         System.out.println(iterativeMinCoins(coins, c));
         System.out.println(minCoins(coins, c, coins.length - 1));
     }
