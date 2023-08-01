@@ -58,11 +58,11 @@ public class BinaryTree {
     }
 
     private void run() {
-        TreeNode tree = new TreeNode(2);
+        TreeNode tree = new TreeNode(1);
         tree.right = new TreeNode(3);
         tree.right.right = new TreeNode(5);
         tree.right.left = new TreeNode(4);
-        tree.left = new TreeNode(1);
+        tree.left = new TreeNode(2);
         printTreeTraversals(tree);
         TreeNode copy = deepCopy(tree);
         printTreeTraversals(copy);

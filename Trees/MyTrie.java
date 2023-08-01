@@ -32,6 +32,19 @@ public class MyTrie {
             }
         }
 
+        public void removeWord(String word) {
+            if(word.length() == 0) return;
+            char firstChar = word.charAt(0);
+
+            if(children.containsKey(firstChar)) {
+                children.get(firstChar).removeWord(word.substring(1));
+                children.get(firstChar).isWord = false;
+                if(children.get(firstChar).children.size() == 0) {
+                    children.remove(firstChar);
+                }
+            }
+        }
+
         public void print() {
             System.out.println("Value: " + this.value + " isWord: " + this.isWord);
             for (HashMap.Entry<Character, Node> entry : this.children.entrySet()) {

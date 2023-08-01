@@ -19,7 +19,7 @@ public class WordSearch {
         boolean[][] visited = new boolean[words.length][words[0].length];
         for(int i=0; i<words.length; i++) {
             for(int j=0; j<words[0].length; j++) {
-                if(word.charAt(0) == words[i][j] && findWordDFS(word, words, visited, i, j)) {
+                if(findWordDFS(word, words, visited, i, j)) {
                     return true;
                 }
             }
