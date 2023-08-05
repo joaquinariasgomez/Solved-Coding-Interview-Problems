@@ -1,22 +1,31 @@
-class Solution {
+import java.util.*;
+
+class IsomorphicStrings {
     private String transformString(String s) {
-        Map<Character, Integer> indexMapping = new HashMap<>();
-        StringBuilder builder = new StringBuilder();
-        
-        for (int i = 0; i < s.length(); ++i) {
-            char c1 = s.charAt(i);
-            
-            if (!indexMapping.containsKey(c1)) {
-                indexMapping.put(c1, i);
+        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+        StringBuilder sol = new StringBuilder();
+        for(int i=0; i<input.length(); i++) {
+            if(map.containsKey(input.charAt(i))) {
+                sol.append(map.get(input.charAt(i))+" ");
             }
-            
-            builder.append(Integer.toString(indexMapping.get(c1)));
-            builder.append(" ");
+            else {
+                map.put(input.charAt(i), i);
+                sol.append(i+" ");
+            }
         }
-        return builder.toString();
+        return sol.toString();
     }
     
     public boolean isIsomorphic(String s, String t) {
         return transformString(s).equals(transformString(t));
+    }
+
+    public void run() {
+        String s = "egg";
+        String t = "add";
+        System.out.println(isIsomorphic(s, t));
+    }
+    public static void main(String[] args) {
+        new IsomorphicStrings().run();
     }
 }

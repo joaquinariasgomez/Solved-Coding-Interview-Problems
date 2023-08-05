@@ -1,40 +1,38 @@
 public class SearchInRotatedArray {
 
     public int searchIndex(int[] nums, int n) {
-        if(nums == null || nums.length == 0) return -1;
-        int start = 0;
+        int begin = 0;
         int end = nums.length-1;
-        while(start<=end) { // This loop will set left pointer to the lowest element in array (also known as pivot)
-            int mid = start + (end-start)/2;
+        while(begin < end) {
+            int mid = begin + (end-begin)/2;
             if(nums[mid] > nums[end]) {
-                start = mid+1;
+                begin = mid+1;
             }
             else {
-                end = mid-1;
+                end = mid;
             }
         }
-
-        int pivot = start;   // Pivot point
-        start = 0;
-        end = nums.length-1;
-
-        if(n >= nums[pivot] && n <= nums[end]) {
-            start = pivot;
+        int pivot = begin;
+        if(target >= nums[pivot] && target <= nums[nums.length-1]) {    //Right part of array
+            begin = pivot;
+            end = nums.length-1;
         }
-        else {
+        else {  // Left part of array
+            begin = 0;
             end = pivot-1;
         }
-
-        while(start<=end) {
-            int mid = start + (end-start)/2;
-            if(nums[mid] == n) {
-                return mid;
-            }
-            else if(nums[mid] < n) {
-                start = mid+1;
+        while(begin <= end) {
+            int mid = begin + (end-begin)/2;
+            if(nums[mid] > target) {
+                end = mid-1;
             }
             else {
-                end = mid-1;
+                if(nums[mid] < target) {
+                    begin = mid+1;
+                }
+                else {
+                    return mid;
+                }
             }
         }
         return -1;

@@ -16,7 +16,7 @@ public class URLify {
             }
             r++;
         }
-        return String.valueOf(sol);
+        return new String(sol);
     }
 
     public void run() {
