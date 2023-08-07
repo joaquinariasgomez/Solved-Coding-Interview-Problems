@@ -3,21 +3,26 @@ import java.util.*;
 public class LongestRepeatingCharacterReplacement {
 
     public int characterReplacement(String s, int k) {
-        char[] count = new char[26];
         int begin = 0;
-        int maxF = 0;
-        int sol = 0;
-        for (int i = 0; i < s.length(); i++) {
-            count[s.charAt(i) - 'A']++;
-            maxF = Math.max(maxF, count[s.charAt(i) - 'A']);
-
-            while((i - begin + 1) - maxF > k) {
-                count[s.charAt(begin) - 'A']--;
+        int longest = 0;
+        char[] map = new char[26];
+        for(int end=0; end<s.length(); end++) { // O(26 * N) -> O(N)
+            // We are currently at subarray begin - end
+            map[s.charAt(end)-'A']++;
+            int mostFreqChar = 0;
+            for(int i=0; i<26; i++) {
+                mostFreqChar = Math.max(mostFreqChar, map[i]);
+            }
+            int windowLength = end-begin+1;
+            if(windowLength - mostFreqChar <= k) {
+                longest = Math.max(longest, windowLength);
+            }
+            else {
+                map[s.charAt(begin)-'A']--;
                 begin++;
             }
-            sol = Math.max(sol, i - begin + 1);
         }
-        return sol;
+        return longest;
     }
 
     public void run() {
